@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>switch制作</title>
+</head>
+
+<body>
+    <h4>用css3美化单选框radio 多选框checkbox 和 switch开关</h4>
+    <p>有简单背景动画</p>
+    <div style="position:relative;">
+        <label class="bui-radios-label bui-radios-anim">
+            <input type="radio" name="sex" />
+            <i class="bui-radios"></i>
+        </label>
+    </div>
+
+    <label>
+        <input class="mui-switch mui-switch-animbg" type="checkbox" />
+        默认未选中
+    </label>
+    <label>
+        <input class="mui-switch mui-switch-anim" type="checkbox" />
+        默认选中
+    </label>
+    <div class="mui-checkbox-con">
+        <label>
+            <input class="mui-checkbox" type="checkbox">默认未选中</label>
+    </div>
+    <div class="mui-checkbox-con">
+        <label>
+            <input class="mui-checkbox" type="checkbox" checked>默认选中</label>
+    </div>
+    <div class="mui-checkbox-con">
+        <label>
+            <input class="mui-checkbox checkbox-orange" type="checkbox" checked>橘黄色 checkbox-orange</label>
+    </div>
+    <div class="mui-checkbox-con">
+        <label>
+            <input class="mui-checkbox checkbox-green" type="checkbox" checked>绿色 checkbox-green</label>
+    </div>
+    <div class="mui-checkbox-con">
+        <label>
+            <input class="mui-checkbox" type="checkbox" disabled>禁用</label>
+    </div>
+</body>
+<style>
+    body {
+        padding-left: 200px;
+    }
+
+    /***** radio css******* */
+    label.bui-radios-label input {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    label.bui-radios-label .bui-radios {
+        display: inline-block;
+        position: relative;
+        width: 13px;
+        height: 13px;
+        background: #fff;
+        border: 1px solid #979797;
+        border-radius: 50%;
+        vertical-align: -2px;
+    }
+
+    label.bui-radios-label input:checked+.bui-radios:after {
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        content: '';
+        width: 7px;
+        height: 7px;
+        background-color: #fff;
+        border-radius: 50%;
+
+    }
+
+    label.bui-radios-label input:checked+.bui-radios {
+        background-color: #00b066;
+        border: 1px solid #00b066;
+    }
+
+    label.bui-radios-label input:disabled+.bui-radios {
+        background-color: #e8e8e8;
+        border: 1px solid #979797;
+    }
+
+    label.bui-radios-label input:disabled:checked+.bui-radios:after {
+        background-color: #c1c1c1;
+
+    }
+
+    label.bui-radios-anim .bui-radios {
+        -webkit-transition: background-color ease-out .3s;
+        transition: background-color ease-out .3s;
+    }
+
+    /***********************  */
+
+
+    .mui-switch {
+        position: relative;
+        width: 52px;
+        height: 31px;
+        border: 1px solid #dfdfdf;
+        background-color: #fdfdfd;
+        box-shadow: #dfdfdf 0 0 0 inset;
+        border-radius: 20px;
+        /* border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px; */
+        /* 背景被裁剪到内容框 */
+        background-clip: content-box;
+        display: inline-block;
+        /* 去除浏览器默认样式 */
+        -webkit-appearance: none;
+        user-select: none;
+        outline: none;
+    }
+
+    .mui-switch:before {
+        content: '';
+        position: absolute;
+        width: 29px;
+        height: 29px;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        /* border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px; */
+        background-color: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .4)
+    }
+
+    .mui-switch:checked {
+        border-color: #64bd63;
+        box-shadow: #64bd63 0 0 0 16px inset;
+        background-color: #64bd63;
+    }
+
+    .mui-switch:checked:before {
+        left: 21px;
+    }
+
+    .mui-switch.mui-switch-animbg {
+        transition: background-color ease 0.4s;
+    }
+
+    .mui-switch.mui-switch-animbg:before {
+        transition: left 0.3s;
+    }
+
+    .mui-switch.mui-switch-animbg:checked {
+        box-shadow: #dfdfdf 0 0 0 0 inset;
+        background-color: #64bd63;
+        transition: border-color 0.4s, background-color ease 0.4s;
+    }
+
+    .mui-switch.mui-switch-animbg:checked:before {
+        transition: left 0.3s;
+    }
+
+    .mui-switch.mui-switch-anim {
+        transition: border cubic-bezier(0, 0, 0, 1) 0.4s, box-shadow cubic-bezier(0, 0, 0, 1) 0.4s;
+    }
+
+    .mui-switch.mui-switch-anim:before {
+        transition: left 0.3s;
+    }
+
+    .mui-switch.mui-switch-anim:checked {
+        box-shadow: #64bd63 0 0 0 16px inset;
+        background-color: #64bd63;
+        transition: border ease 0.4s, box-shadow ease 0.4s, background-color ease 1.2s;
+    }
+
+    .mui-switch.mui-switch-anim:checked:before {
+        transition: left 0.3s;
+    }
+
+    /* circe */
+    .mui-checkbox {
+        -webkit-appearance: none;
+        position: relative;
+        width: 25px;
+        height: 25px;
+        margin-right: 10px;
+        background-color: #FFFFFF;
+        border: solid 1px #d9d9d9;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        background-clip: padding-box;
+        display: inline-block;
+    }
+
+    .mui-checkbox:focus {
+        outline: 0 none;
+        outline-offset: -2px;
+    }
+
+    .mui-checkbox:checked {
+        background-color: #18b4ed;
+        border: solid 1px #FFFFFF;
+    }
+
+    .mui-checkbox:checked:before {
+        display: inline-block;
+        margin-top: 1px;
+        margin-left: 2px;
+        font-family: iconfont;
+        content: "\e667";
+        color: #FFFFFF;
+        font-size: 18px;
+    }
+
+    .mui-checkbox:disabled {
+        background-color: #d9d9d9;
+        border: solid 1px #d9d9d9;
+    }
+
+    .mui-checkbox:disabled:before {
+        display: inline-block;
+        margin-top: 1px;
+        margin-left: 2px;
+        font-family: iconfont;
+        content: "\e667";
+        color: #FFFFFF;
+        font-size: 18px;
+    }
+
+    .mui-checkbox.checkbox-green:checked {
+        background-color: #5cb85c;
+    }
+
+    .mui-checkbox.checkbox-orange:checked {
+        background-color: #f0ad4e;
+    }
+
+    .mui-checkbox.checkbox-s {
+        width: 19px;
+        height: 19px;
+    }
+
+    .mui-checkbox.checkbox-s:before {
+        display: inline-block;
+        margin-top: 1px;
+        margin-left: 2px;
+        font-family: iconfont;
+        content: "\e667";
+        color: #FFFFFF;
+        font-size: 13px;
+    }
+
+    .mui-checkbox-anim {
+        -webkit-transition: background-color ease 0.2s;
+        transition: background-color ease 0.2s;
+    }
+</style>
+
+</html>
