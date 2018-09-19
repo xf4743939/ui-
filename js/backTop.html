@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>实现回到顶部效果</title>
+</head>
+
+<body>
+    <div class="container">
+
+    </div>
+    <a href="javascript:;" id="toTop">回到顶部</a>
+</body>
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .container {
+        height: 1500px;
+        width: 100%;
+        background: pink;
+    }
+
+    a {
+        display: none;
+        width: 80px;
+        height: 40px;
+        line-height: 40px;
+        background: #000;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+    }
+</style>
+<script>
+    window.onload = function () {
+        let el = document.getElementById('toTop');
+        let timer = null;
+        let touchScroll = false; //用户触碰滚动条，让滚动停止
+        el.addEventListener('click', function () {
+            timer = setInterval(function () {
+                let top = document.body.scrollTop || document.documentElement.scrollTop; //获取滚动条高度
+                console.log(top, 'toptop')
+                let speed = Math.floor(-top / 4);
+                document.body.scrollTop = document.documentElement.scrollTop = top + speed; //设置滚动条高度
+                touchScroll = true;
+                if (top == 0) {
+                    clearInterval(timer)
+                }
+            }, 50)
+        });
+        //监听滚动事件
+        window.onscroll = function () {
+            //若高度达到一定高度，则回到顶部按钮显示，否则隐藏
+            let top = document.body.scrollTop || document.documentElement.scrollTop;
+
+            if (top > 200) {
+                el.style.display = 'block'
+            } else {
+                el.style.display = 'none'
+            }
+            if (!touchScroll) {
+                clearInterval(timer);
+            }
+            touchScroll = false;
+        }
+    }
+</script>
+
+</html>
