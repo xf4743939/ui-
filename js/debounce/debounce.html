@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js中函数防抖实战</title>
+    <style>
+        *{
+         margin: 0;
+         padding: 0;
+       }
+       input{
+           width: 150px;
+       }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="text" />
+    <h3>
+        search搜索联想，用户在不断输入值时，用防抖来节约请求资源。
+    </h3>
+    <h3>
+        window触发resize的时候，不断的调整浏览器窗口大小会不断的触发这个事件，用防抖来让其只触发一次
+    </h3>
+    <script>
+        /* 模拟 ajax 请求 */
+        function ajax(content) {
+            console.log('ajax request' + content)
+        }
+        let inputa = document.getElementById("text");
+        /* 
+         没有防抖的input
+         ps 只要按下键盘就会触发 ajax 请求浪费资源
+         而且实际也是用户输出完整的字符才会请求
+        */
+        // inputa.addEventListener('keyup', function (e) {
+        //     ajax(e.target.value)
+        // })
+
+        /* 防止抖动函数 */
+        function debounce(fun, delay) {
+
+            return function (args) {
+
+                let that = this;
+                let _args = args;
+                clearTimeout(fun.id);
+                fun.id = setTimeout(function () {
+                    fun.call(that, _args)
+                }, delay)
+            }
+        }
+        let debounceAjax = debounce(ajax, 500);
+        inputa.addEventListener('keyup', function (e) {
+
+            debounceAjax(e.target.value)
+        })
+    </script>
+</body>
+
+</html>

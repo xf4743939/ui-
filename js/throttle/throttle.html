@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js 节流 实战</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 100px;
+        }
+
+        #text {
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="show">0</p>
+    <button id="btn">点我抢购</button>
+    <h3>
+        鼠标不断点击触发，mousedown(单位时间内只触发一次)
+    </h3>
+    <h3>
+        监听滚动事件，比如是否滑到底部自动加载更多，用throttle来判断
+    </h3>
+    <script>
+        var odiv = document.getElementById("show");
+        var btn = document.getElementById("btn");
+
+        function buy() {
+            odiv.innerHTML = parseInt(odiv.innerHTML) + 1
+        }
+
+        function throttle(fun, delay) {
+            let last, deferTimer;
+            return function () {
+                let that = this;
+                let _args = arguments;
+                let now = +new Date();
+                if (last && now < last + delay) {
+                    clearTimeout(deferTimer);
+                    deferTimer = setTimeout(function () {
+                        last = now;
+                        fun.apply(that, _args)
+                    }, delay)
+                } else {
+                    clearTimeout(deferTimer);
+                    last = now;
+                    fun.apply(that, _args)
+                }
+            }
+        }
+        let throttleAjax = throttle(buy, 500)
+
+        btn.addEventListener("click", function (e) {
+            throttleAjax()
+        })
+    </script>
+</body>
+
+</html>
