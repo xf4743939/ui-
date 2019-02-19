@@ -48,9 +48,46 @@ ___________________________________________________________________
 
 二 web工程师要读的书籍
 ------
-1. (高性能javaScript)
-2.(编写可维护的javaScript（进阶书籍))
-3. (javaScript 面向对象编程指南(已读))
+### js相关书籍
+1. 高性能javaScript
+2. 编写可维护的javaScript（进阶书籍）
+3. javaScript 面向对象编程指南(已读)
+4. javascript 经典实例
+5. csdn 网站的前端分享
+6. JavaScript异步编程（进阶书籍）
+7. 你不知道的javascript
+8. 精通javascript(进阶)
+9. 编写高质量javascipt 代码68 个有效方法
+10. javascript 设计模式与开发实践
+11. javascript 高级程序设计
+12. javascript语言精粹
+13. javascript Dom 编程艺术
+14. javascript 模式
+15. javascript 框架设计（必读）（反复看）
+16. 响应式web设计
+17. 《Don`t make me think》
+18. javascript 编程精解
+19. JAVASCRIPT语言精髓与编程实践（进阶）
+20. javascript 函数式编程指南(入门)
+21. javascript面向对象编程指南（代码敲完）
+22. 正则指引
+23. 基于MVC的JavaScript Web富应用开发（代码敲完）
+24. js忍者秘籍
+*********
+### css相关书籍
+1. 精讲css
+2. css权威指南
+3. css揭秘（先看）
+*****
+### 网络协议相关书籍
+1. 图解http
+2. HTTP权威指南
+3. Web性能权威指南
+4. 大型网站技术架构
+
+
+
+
 
 
 
