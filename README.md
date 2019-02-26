@@ -88,7 +88,9 @@ ___________________________________________________________________
 1. 弹出层
 2. 富文本编辑器
 3. 语法高亮插件
-
+***
+### 前端资源仓库
+[前端资源github](https://github.com/helloqingfeng/Awsome-Front-End-learning-resource/tree/master/04-Front-end-tutorial-master)
 
 
 
