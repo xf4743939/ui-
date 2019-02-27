@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>loading css 动画</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-size: 16px;
+        color: #fff;
+        background: #a7a7a7;
+
+    }
+
+    body {
+        padding: 50px;
+    }
+
+    .loading:after {
+        font-size: 16px;
+        overflow: hidden;
+        display: inline-block;
+        vertical-align: bottom;
+        animation: ellipse 2s infinite;
+        content: "\2026";
+        /* code  对应... */
+    }
+
+    @keyframes ellipse {
+        from {
+            width: 2px;
+        }
+
+        to {
+            width: 20px;
+        }
+    }
+</style>
+
+<body>
+    <div class="loading">
+
+    </div>
+</body>
+
+</html>
