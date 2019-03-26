@@ -89,6 +89,12 @@ ___________________________________________________________________
 2. 富文本编辑器
 3. 语法高亮插件
 ***
+### Node.js相关书籍
+1. node.js包教不包会
+2. 七天学会node.js
+3. node.js实战第二版
+4. 深入浅出node.js
+****
 ### 前端资源仓库
 [前端资源github](https://github.com/helloqingfeng/Awsome-Front-End-learning-resource/tree/master/04-Front-end-tutorial-master)
 [css库相关资料](http://www.fly63.com/nav/549)
