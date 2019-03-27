@@ -95,6 +95,7 @@ ___________________________________________________________________
 3. node.js实战第二版
 4. 深入浅出node.js
 5. [mongoose资料](https://segmentfault.com/a/1190000012095054#articleHeader31)
+6. [node社区](https://github.com/cnodejs/nodeclub) 
 ****
 ### 前端资源仓库
 [前端资源github](https://github.com/helloqingfeng/Awsome-Front-End-learning-resource/tree/master/04-Front-end-tutorial-master)
