@@ -97,6 +97,9 @@ ___________________________________________________________________
 5. [mongoose资料](https://segmentfault.com/a/1190000012095054#articleHeader31)
 6. [node社区](https://github.com/cnodejs/nodeclub) 
 ****
+### vue-cli3和vue知识
+1. [vue-cli3 项目从搭建优化到docker部署]("https://juejin.im/post/5c4a6fcd518825469414e062#heading-33")
+*****
 ### 前端资源仓库
 [前端资源github](https://github.com/helloqingfeng/Awsome-Front-End-learning-resource/tree/master/04-Front-end-tutorial-master)
 [css库相关资料](http://www.fly63.com/nav/549)
