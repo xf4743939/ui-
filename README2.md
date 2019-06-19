@@ -27,3 +27,44 @@ console.log(5)
 因此，应当先输出 5，然后再输出 4 。
 
 最后在到下一个 tick，就是 1 。
+===
+ 1.vue 双向绑定的原理 
+===
+```
+  <div id="myapp">
+        <input type="text" v-model="message">
+        <span v-bind="message"></span>
+    </div>
+  
+    <script type="text/javascript">
+        var data = {
+            message: ""
+        }
+        var myapp = document.querySelector("#myapp")
+        var models = myapp.querySelectorAll("[v-model=message]")
+        //先循环添加 键盘按下事件
+        for (let i = 0; i < models.length; i++) {
+            models[i].onkeyup = function () {
+
+                //getAttribute 返回v-model 属性值 message 没有返回null 或 ""
+                data[this.getAttribute("v-model")] = this.value
+            }
+        }
+        Object.defineProperty(data, "message", {
+            set: function (newValue) {
+                var binds = myapp.querySelectorAll("[v-bind=message]")
+                for (let i = 0; i < binds.length; i++) {
+                    binds[i].innerHTML = newValue
+                }
+                this.value = newValue
+            },
+            get: function () {
+                console.log(this, 'this3')
+                return this.value
+            }
+        })
+      
+    </script>
+
+```
+
