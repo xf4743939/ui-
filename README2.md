@@ -27,9 +27,9 @@ console.log(5)
 因此，应当先输出 5，然后再输出 4 。
 
 最后在到下一个 tick，就是 1 。
-===
- 1.vue 双向绑定的原理 
-===
+ 
+* 1.vue 双向绑定的原理 *
+
 ```
   <div id="myapp">
         <input type="text" v-model="message">
