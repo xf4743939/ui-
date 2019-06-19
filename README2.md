@@ -67,4 +67,25 @@ console.log(5)
     </script>
 
 ```
+**js数组数据排序**
+```
+   var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+        function randomArr1(arr) {
+            for (let i = 0, len = arr.length; i < len; i++) {
+                const ran = parseInt(Math.random() * len)
+                const temp = arr[ran]
+                arr[ran] = arr[i]
+                arr[i] = temp
+            }
+            return arr
+        }
+
+        function randomArr3(arr) {
+            return arr.sort(() => Math.random() - 0.5)
+        }
+        let a = randomArr1(arr)
+       
+
+```
 
