@@ -101,6 +101,44 @@ console.log(5)
             return obj
         }
 ```
+**reducer多维数据叠加,高阶篇**
+```
+  var manageReducers = function (reducers) {  
+            return function (state, item) {     
+                return Object.keys(reducers).reduce(function (nextState, key) {
+                    reducers[key](state, item)
+                    return state
+                }, {})
+            }
+        }
+        var reducers = {
+            totalInEuros: function (state, item) {
+                return state.euros += item.price * 0.89742
+            },
+            totalInYen: function (state, item) {
+                return state.yens += item.price * 113.850
+            }
+        }
+        var bigTotalPriceReducer = manageReducers(reducers);
+        var initialState = {
+            euros: 0,
+            yens: 0
+        }
+        var items = [{
+            price: 10,
+            num: 3,
+            id: 1850
+        }, {
+            price: 15,
+            num: 2,
+            id: 44
+        }, {
+            price: 20,
+            num: 2,
+            id: 99
+        }]
+        var totals = items.reduce(bigTotalPriceReducer, initialState)
+```
 **PC端和移动端的区别**
 1. PC考虑的浏览器的兼容性，移动端开发考虑的更多是手机兼容性，因为目前不管android手机还是ios手机,一般浏览器都是webkit 内核，所以移动端开发更多考虑是手机分辨率的适配和不同操作系统的略微差异化。
 2. 部分事件处理上，移动端多出来的事件是触屏事件，而缺少的是hover事件。另外移动端弹出的手机键盘的处理，这样在pc端是遇不到的。
