@@ -235,7 +235,7 @@ var observer = (function () {
         emailController.initialize()
         /* ********* */
 ```
-###JS框架MVVM模式实现地址列表
+### JS框架MVVM模式实现地址列表
 ```
   <form data-submit="addEmail">
         <input type="text" placeholder="NeW Email address" />
