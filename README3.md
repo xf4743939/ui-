@@ -235,3 +235,133 @@ var observer = (function () {
         emailController.initialize()
         /* ********* */
 ```
+###JS框架MVVM模式实现地址列表
+```
+  <form data-submit="addEmail">
+        <input type="text" placeholder="NeW Email address" />
+        <button type="submit">Add</button>
+    </form>
+    <ul data-loop>
+        <li>
+            <span data-text></span>
+            <button data-click="removeEmail">Remove</button>
+        </li>
+    </ul>
+    <script type="text/javascript">
+        /*******Mvc模式 model****** */
+        function EmailModel(data) {
+            this.emailAddress = data || []
+        }
+        EmailModel.prototype = {
+            add: function (email) {
+                this.emailAddress.unshift(email)
+                //广播一个事件至该系统,指出已经添加了一个新的email地址
+                observer.publish("model.email-address.added", email)
+            },
+            remove: function (email) {
+
+                var index = 0,
+                    length = this.emailAddress.length;
+                for (; index < length; index++) {
+                    if (this.emailAddress[index] == email) {
+                        this.emailAddress.splice(index, 1)
+                        observer.publish("model.email-address.removed", email)
+                        break
+                    }
+                }
+            },
+            //定义方法，返回所保存的email地址完整列表
+            getAll: function () {
+                return this.emailAddress
+            }
+        }
+
+        function EmailViewModel(model, view) {
+
+            var that = this;
+            this.model = model;
+            this.view = view;
+            this.methods = {
+                addEmail: function (email) {
+
+                    that.model.add(email)
+                },
+                removeEmail: function (email) {
+                    that.model.remove(email)
+                }
+            }
+        }
+        EmailViewModel.prototype.initialize = function () {
+            this.listElement = this.view.querySelectorAll("[data-loop]")[0]
+            this.listItemElement = this.listElement.getElementsByTagName("li")[0]
+            this.bindForm()
+            this.bindList()
+            this.bindEvents()
+
+        }
+        EmailViewModel.prototype.bindForm = function () {
+
+            var that = this,
+                form = this.view.querySelectorAll("[data-submit]")[0],
+                formSubmitMethod = form.getAttribute("data-submit");
+            form.addEventListener("submit", function (event) {
+
+                event.preventDefault()
+                var email = form.getElementsByTagName("input")[0].value;
+                if (that.methods[formSubmitMethod] && typeof that.methods[formSubmitMethod] ===
+                    'function') {
+                    that.methods[formSubmitMethod](email)
+                }
+            })
+        }
+        EmailViewModel.prototype.bindList = function () {
+
+            var data = this.model.getAll(),
+                index = 0,
+                length = data.length,
+                that = this;
+
+            function makeClickFunction(email) {
+                return function (event) {
+
+                    var methodName = event.target.getAttribute("data-click")
+                    if (that.methods[methodName] && typeof that.methods[methodName] === 'function') {
+                        that.methods[methodName](email)
+                    }
+                }
+            }
+            this.listElement.innerHTML = "";
+            for (; index < length; index++) {
+                email = data[index];
+                newListItem = this.listItemElement.cloneNode(true)
+                newListItem.querySelectorAll("[data-text]")[0].innerHTML = email;
+                newListItem.querySelectorAll("[data-click]")[0].addEventListener("click", makeClickFunction(email),
+                    false)
+                this.listElement.appendChild(newListItem)
+            }
+        }
+        EmailViewModel.prototype.clearInputField = function () {
+            var textField = this.view.querySelectorAll("input[type=text]")[0];
+            textField.value = ""
+        }
+        EmailViewModel.prototype.bindEvents = function () {
+            var that = this
+
+            function upDataView() {
+                that.bindList()
+                that.clearInputField()
+            }
+            observer.subscribe("model.email-address.added", upDataView)
+            observer.subscribe("model.email-address.removed", upDataView)
+        }
+
+
+        var emailModel = new EmailModel([
+                "163@qq.com",
+                "dsds@.com",
+                "168@qq.com"
+            ]),
+            emailView = document.body,
+            emailViewModel = new EmailViewModel(emailModel, emailView);
+        emailViewModel.initialize()
+```
